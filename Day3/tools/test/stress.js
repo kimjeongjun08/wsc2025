@@ -5,14 +5,14 @@ import { uuidv4 } from 'https://jslib.k6.io/k6-utils/1.4.0/index.js';
 // 테스트 설정 - 즉시 VU 적용
 export const options = {
   stages: [
-    { duration: '0s', target: 10 },     // 즉시 50명으로 시작
-    { duration: '5m', target: 10 },     // 2분간 50명 유지
-    { duration: '0s', target: 50 },    // 즉시 100명으로 변경
-    { duration: '5m', target: 50 },    // 2분간 100명 유지
-    { duration: '0s', target: 300 },    // 즉시 200명으로 변경
-    { duration: '5m', target: 300 },    // 2분간 200명 유지
-    { duration: '0s', target: 50 },    // 즉시 500명으로 변경
-    { duration: '5m', target: 50 },    // 2분간 500명 유지
+    { duration: '0s', target: 30 },     // 즉시 50명으로 시작
+    { duration: '5m', target: 30 },     // 2분간 50명 유지
+    { duration: '0s', target: 70 },    // 즉시 100명으로 변경
+    { duration: '5m', target: 70 },    // 2분간 100명 유지
+    { duration: '0s', target: 500 },    // 즉시 200명으로 변경
+    { duration: '5m', target: 500 },    // 2분간 200명 유지
+    { duration: '0s', target: 100 },    // 즉시 500명으로 변경
+    { duration: '5m', target: 100 },    // 2분간 500명 유지
     { duration: '0s', target: 10 },   // 즉시 1000명으로 변경
     { duration: '5m', target: 10 },   // 2분간 1000명 유지
     { duration: '0s', target: 2 },      // 즉시 0명으로 감소
@@ -25,7 +25,7 @@ export const options = {
 };
 
 // 기본 URL 설정 (환경변수 또는 기본값 사용)
-const BASE_URL = __ENV.BASE_URL || 'http://localhost:3000';
+const BASE_URL = __ENV.BASE_URL || 'http://dv7x7l3k87prk.cloudfront.net';
 
 export default function () {
   // UUID 자동 생성

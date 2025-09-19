@@ -302,13 +302,21 @@ class WAFHeaderMonitor:
         print(f"{GREEN}{'═' * 80}{RESET}")
         print(f"{BOLD}📡 실시간 모니터링 중... (Ctrl+C로 종료){RESET}")
         
+        # 통계 디렉토리 미리 생성
+        stats_dir = "waf_header_stats"
+        if not os.path.exists(stats_dir):
+            os.makedirs(stats_dir)
+            print(f"{GREEN}📁 통계 디렉토리 생성: {stats_dir}{RESET}")
+        
         # 현재 시간에서 5분 전부터 모니터링 시작
         start_time = int((datetime.now() - timedelta(minutes=5)).timestamp() * 1000)
+        last_stats_save = time.time()
         
         while True:
             try:
                 # 새로운 로그 이벤트 가져오기
                 events = self.get_log_events(start_time)
+                print(f"🔍 로그 이벤트 {len(events)}개 조회됨")
                 
                 processed_count = 0
                 for event in events:
@@ -349,6 +357,17 @@ class WAFHeaderMonitor:
                     new_start_time = max(event.get('timestamp', 0) for event in events) + 1
                     if new_start_time != start_time:
                         start_time = new_start_time
+                
+                # 30초마다 강제로 통계 저장 (로그가 없어도)
+                current_time = time.time()
+                if current_time - last_stats_save >= 30:
+                    with self.stats_lock:
+                        if self.current_minute_headers and self.last_minute:
+                            print(f"⏰ 30초 경과 - 강제 통계 저장: {self.last_minute}")
+                            self.save_minute_stats(self.last_minute, dict(self.current_minute_headers))
+                            last_stats_save = current_time
+                        else:
+                            print(f"⏰ 30초 경과 - 저장할 통계 없음")
                 
                 # 폴링 간격만큼 대기
                 time.sleep(poll_interval)

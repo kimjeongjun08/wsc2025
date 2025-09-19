@@ -66,8 +66,8 @@ resource "aws_ecs_task_definition" "stress_td" {
   family                   = "stress-td"
   network_mode             = "bridge"
   requires_compatibilities = ["EC2"]
-  cpu                      = "256"
-  memory                   = "512"
+  cpu                      = "512"
+  memory                   = "1024"
   task_role_arn           = var.ecs_task_execution_role_arn
   execution_role_arn      = var.ecs_task_execution_role_arn
 

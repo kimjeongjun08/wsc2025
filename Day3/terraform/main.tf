@@ -9,7 +9,7 @@ module "ec2" {
   source = "./Modules/EC2"
 
   name                 = "apdev"
-  bastion_instance_type = "t3.medium"
+  bastion_instance_type = "t3.small"
   bastion_sg           = aws_security_group.apdev_bastion_sg.id
   puba_subnet_id       = aws_subnet.apdev_pub_a.id
   iam_instance_profile = module.iam.apdev_admin_instance_profile

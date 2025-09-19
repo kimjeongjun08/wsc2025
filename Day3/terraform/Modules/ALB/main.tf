@@ -15,7 +15,7 @@ resource "aws_lb_target_group" "apdev_product_tg" {
   port        = 8080
   protocol    = "HTTP"
   vpc_id      = var.vpc_id
-  target_type = "ip"
+  target_type = "instance"
 
   health_check {
     enabled             = true
@@ -39,7 +39,7 @@ resource "aws_lb_target_group" "apdev_user_tg" {
   port        = 8080
   protocol    = "HTTP"
   vpc_id      = var.vpc_id
-  target_type = "ip"
+  target_type = "instance"
 
   health_check {
     enabled             = true
@@ -63,7 +63,7 @@ resource "aws_lb_target_group" "apdev_stress_tg" {
   port        = 8080
   protocol    = "HTTP"
   vpc_id      = var.vpc_id
-  target_type = "ip"
+  target_type = "instance"
 
   health_check {
     enabled             = true

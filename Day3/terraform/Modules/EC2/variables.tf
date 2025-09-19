@@ -7,7 +7,7 @@ variable "name" {
 variable "bastion_instance_type" {
   description = "Instance type for bastion host"
   type        = string
-  default     = "t3.medium"
+  default     = "t3.small"
 }
 
 variable "bastion_sg" {

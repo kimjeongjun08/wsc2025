@@ -33,9 +33,10 @@ def delete_all_dynamodb_items():
 
 def delete_all_mysql_data():
     """RDS MySQL user 테이블의 모든 데이터 삭제"""
+    
     try:
         connection = pymysql.connect(
-            host='apdev-rds-instance.cdnblsxzzpgz.ap-northeast-2.rds.amazonaws.com',
+            host='apdev-rds-proxy.proxy-cdnblsxzzpgz.ap-northeast-2.rds.amazonaws.com',
             user='admin',
             password='Skill53##',
             database='dev',
