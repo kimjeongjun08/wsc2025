@@ -15,8 +15,8 @@ resource "aws_db_instance" "apdev_rds_instance" {
   
   allocated_storage     = 400
   storage_type          = "gp3"
-  iops                  = 12000
-  storage_throughput    = 500
+  iops                  = 64000
+  storage_throughput    = 4000
   
   db_name  = "dev"
   username = "admin"
